@@ -9,6 +9,7 @@
 			menuButton.addEventListener("click", () => {
 				const isOpen = menu.classList.toggle("is-open");
 				menuButton.setAttribute("aria-expanded", String(isOpen));
+				menu.style.setProperty("--menu-progress", isOpen ? "1" : "0");
 			});
 		}
 
@@ -35,6 +36,9 @@
 
 		// Animasi elemen saat terlihat.
 		const animated = document.querySelectorAll("[data-animate]");
+		animated.forEach((element, index) => {
+			element.style.setProperty("--animation-delay", `${Math.min(index * 70, 420)}ms`);
+		});
 		if ("IntersectionObserver" in window) {
 			const observer = new IntersectionObserver((entries) => {
 				entries.forEach((entry) => {
@@ -47,6 +51,30 @@
 			animated.forEach((element) => observer.observe(element));
 		} else {
 			animated.forEach((element) => element.classList.add("is-visible"));
+		}
+
+		// Efek ripple pada tombol dan tautan aksi.
+		document.querySelectorAll("button, .button, a[role='button']").forEach((control) => {
+			control.addEventListener("click", (event) => {
+				const ripple = document.createElement("span");
+				ripple.className = "click-ripple";
+				const rect = control.getBoundingClientRect();
+				ripple.style.left = `${event.clientX - rect.left}px`;
+				ripple.style.top = `${event.clientY - rect.top}px`;
+				control.appendChild(ripple);
+				ripple.addEventListener("animationend", () => ripple.remove(), { once: true });
+			});
+		});
+
+		// Gerakan ringan berdasarkan posisi kursor untuk elemen hero.
+		const hero = document.querySelector("[data-parallax]");
+		if (hero && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+			const updateParallax = (event) => {
+				const x = (event.clientX / window.innerWidth - 0.5) * 10;
+				const y = (event.clientY / window.innerHeight - 0.5) * 10;
+				hero.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+			};
+			window.addEventListener("pointermove", updateParallax, { passive: true });
 		}
 
 		// Validasi dan pesan sukses form tanpa reload halaman.
