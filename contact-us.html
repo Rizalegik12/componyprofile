@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Contact Us | Connect</title>
+	<style>
+		:root {
+			--navy: #102a43;
+			--blue: #2477d4;
+			--light-blue: #eaf4ff;
+			--text: #52606d;
+			--white: #fff;
+		}
+
+		* { box-sizing: border-box; margin: 0; padding: 0; }
+		body {
+			color: var(--navy);
+			font-family: Inter, Arial, sans-serif;
+			background: #f8fbff;
+			line-height: 1.6;
+		}
+		nav {
+			align-items: center;
+			display: flex;
+			justify-content: space-between;
+			margin: auto;
+			max-width: 1120px;
+			padding: 28px 24px;
+		}
+		.logo { font-size: 1.35rem; font-weight: 800; letter-spacing: -.5px; }
+		.logo span { color: var(--blue); }
+		nav a { color: var(--navy); text-decoration: none; font-weight: 600; }
+		.hero {
+			background: linear-gradient(135deg, #eaf4ff 0%, #fff 70%);
+			padding: 70px 24px 90px;
+			text-align: center;
+		}
+		.eyebrow { color: var(--blue); font-size: .8rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; }
+		h1 { font-size: clamp(2.5rem, 6vw, 4.8rem); letter-spacing: -2px; line-height: 1.05; margin: 15px auto 20px; max-width: 780px; }
+		.hero p { color: var(--text); font-size: 1.1rem; margin: auto; max-width: 610px; }
+		.content { display: grid; gap: 55px; grid-template-columns: .8fr 1.2fr; margin: -40px auto 80px; max-width: 1060px; padding: 0 24px; position: relative; }
+		.info, form { background: var(--white); border-radius: 18px; box-shadow: 0 15px 45px rgba(16, 42, 67, .09); padding: 38px; }
+		h2 { font-size: 1.55rem; margin-bottom: 12px; }
+		.info > p { color: var(--text); margin-bottom: 28px; }
+		.detail { align-items: flex-start; display: flex; gap: 14px; margin-top: 22px; }
+		.icon { align-items: center; background: var(--light-blue); border-radius: 10px; color: var(--blue); display: flex; flex: 0 0 42px; font-size: 1.2rem; height: 42px; justify-content: center; }
+		.detail strong { display: block; font-size: .95rem; }
+		.detail span { color: var(--text); font-size: .9rem; }
+		form { display: grid; gap: 17px; }
+		label { font-size: .9rem; font-weight: 700; }
+		input, textarea { border: 1px solid #d9e2ec; border-radius: 9px; font: inherit; margin-top: 7px; outline: none; padding: 13px 14px; width: 100%; }
+		input:focus, textarea:focus { border-color: var(--blue); box-shadow: 0 0 0 3px #eaf4ff; }
+		textarea { min-height: 125px; resize: vertical; }
+		button { background: var(--blue); border: 0; border-radius: 9px; color: white; cursor: pointer; font: inherit; font-weight: 700; padding: 14px; transition: .2s; }
+		button:hover { background: #175eae; transform: translateY(-1px); }
+		footer { color: #829ab1; font-size: .85rem; padding: 0 24px 28px; text-align: center; }
+		@media (max-width: 720px) { .content { grid-template-columns: 1fr; margin-top: -35px; } .info, form { padding: 26px; } nav { padding-top: 20px; } }
+	</style>
+</head>
+<body>
+	<nav>
+		<div class="logo">con<span>nect</span>.</div>
+		<a href="mailto:hello@connect.id">hello@connect.id</a>
+	</nav>
+
+	<header class="hero">
+		<div class="eyebrow">Hubungi kami</div>
+		<h1>Mari wujudkan ide hebat bersama.</h1>
+		<p>Punya pertanyaan, ide, atau ingin berkolaborasi? Tim kami siap mendengarkan dan membantu Anda.</p>
+	</header>
+
+	<main class="content">
+		<section class="info">
+			<h2>Jangan ragu untuk menyapa.</h2>
+			<p>Ceritakan kebutuhan Anda kepada kami. Kami akan menghubungi Anda dalam 1–2 hari kerja.</p>
+			<div class="detail"><div class="icon">✉</div><div><strong>Email</strong><span>hello@connect.id</span></div></div>
+			<div class="detail"><div class="icon">⌖</div><div><strong>Lokasi</strong><span>Jakarta, Indonesia</span></div></div>
+			<div class="detail"><div class="icon">◷</div><div><strong>Jam kerja</strong><span>Senin–Jumat, 09.00–17.00</span></div></div>
+		</section>
+
+		<form action="#" method="post">
+			<h2>Kirim pesan</h2>
+			<label for="name">Nama lengkap<input id="name" name="name" type="text" placeholder="Nama Anda" required></label>
+			<label for="email">Alamat email<input id="email" name="email" type="email" placeholder="nama@email.com" required></label>
+			<label for="message">Pesan<textarea id="message" name="message" placeholder="Tulis pesan Anda di sini..." required></textarea></label>
+			<button type="submit">Kirim pesan →</button>
+		</form>
+	</main>
+	<footer>© 2024 Connect. Dibuat untuk koneksi yang lebih bermakna.</footer>
+</body>
+</html>
