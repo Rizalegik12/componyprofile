@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cara Kerja | Kami</title>
+    <style>
+      :root {
+        --primary: #1e3a8a;
+        --primary-dark: #172554;
+        --secondary: #10b981;
+        --accent: #f59e0b;
+        --text: #1f2937;
+        --muted: #6b7280;
+        --bg: #f8fafc;
+        --card: #ffffff;
+        --line: #e5e7eb;
+        --shadow: 0 10px 30px rgba(30, 58, 138, 0.12);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: linear-gradient(180deg, #f8fafc 0%, #eef4ff 100%);
+        color: var(--text);
+      }
+
+      a {
+        text-decoration: none;
+      }
+
+      .container {
+        width: min(1100px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      header {
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--line);
+        position: sticky;
+        top: 0;
+        z-index: 10;
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 76px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 700;
+        color: var(--primary-dark);
+        font-size: 1.15rem;
+      }
+
+      .brand-mark {
+        width: 42px;
+        height: 42px;
+        border-radius: 12px;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        display: grid;
+        place-items: center;
+        color: white;
+        font-weight: 700;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        color: var(--muted);
+        font-size: 0.96rem;
+      }
+
+      .nav-links a:hover {
+        color: var(--primary);
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 14px 22px;
+        border-radius: 999px;
+        font-weight: 700;
+        transition: 0.2s ease;
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, var(--primary), #2563eb);
+        color: white;
+        box-shadow: var(--shadow);
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+      }
+
+      .hero {
+        padding: 72px 0 42px;
+      }
+
+      .hero-wrap {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        align-items: center;
+        gap: 40px;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 14px;
+        border-radius: 999px;
+        background: rgba(16, 185, 129, 0.1);
+        color: var(--secondary);
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+      }
+
+      h1 {
+        font-size: clamp(2.2rem, 4vw, 4rem);
+        line-height: 1.1;
+        margin: 20px 0 18px;
+        color: var(--primary-dark);
+      }
+
+      .lead {
+        font-size: 1.08rem;
+        line-height: 1.8;
+        color: var(--muted);
+        max-width: 620px;
+      }
+
+      .actions {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-top: 28px;
+      }
+
+      .secondary-link {
+        color: var(--primary);
+        font-weight: 700;
+      }
+
+      .hero-card {
+        background: linear-gradient(135deg, #ffffff 0%, #edf4ff 100%);
+        border: 1px solid rgba(30, 58, 138, 0.08);
+        border-radius: 28px;
+        padding: 24px;
+        box-shadow: var(--shadow);
+      }
+
+      .mini-panel {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: 18px;
+        margin-bottom: 18px;
+      }
+
+      .mini-panel:last-child {
+        margin-bottom: 0;
+      }
+
+      .mini-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 18px;
+      }
+
+      .chip {
+        background: rgba(16, 185, 129, 0.1);
+        color: var(--secondary);
+        border-radius: 999px;
+        padding: 6px 10px;
+        font-size: 0.75rem;
+        font-weight: 700;
+      }
+
+      .progress {
+        height: 14px;
+        background: #edf2f7;
+        border-radius: 999px;
+        overflow: hidden;
+      }
+
+      .progress-bar {
+        width: 72%;
+        height: 100%;
+        background: linear-gradient(90deg, var(--secondary), #34d399);
+        border-radius: inherit;
+      }
+
+      .stat-list {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+        margin-top: 18px;
+      }
+
+      .stat-item {
+        background: #f8fafc;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 12px 10px;
+        text-align: center;
+      }
+
+      .stat-item strong {
+        display: block;
+        font-size: 1.25rem;
+        color: var(--primary-dark);
+      }
+
+      .stat-item span {
+        font-size: 0.75rem;
+        color: var(--muted);
+      }
+
+      section {
+        padding: 42px 0;
+      }
+
+      .section-head {
+        text-align: center;
+        margin-bottom: 28px;
+      }
+
+      .section-head h2 {
+        font-size: clamp(1.8rem, 2vw, 2.6rem);
+        color: var(--primary-dark);
+        margin: 0 0 10px;
+      }
+
+      .section-head p {
+        color: var(--muted);
+        max-width: 700px;
+        margin: 0 auto;
+        line-height: 1.7;
+      }
+
+      .steps {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 22px;
+      }
+
+      .step-card {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        padding: 26px 20px;
+        box-shadow: 0 4px 18px rgba(15, 23, 42, 0.04);
+      }
+
+      .step-num {
+        width: 52px;
+        height: 52px;
+        display: grid;
+        place-items: center;
+        border-radius: 16px;
+        background: linear-gradient(135deg, rgba(30, 58, 138, 0.12), rgba(16, 185, 129, 0.12));
+        color: var(--primary);
+        font-weight: 800;
+        font-size: 1.2rem;
+        margin-bottom: 16px;
+      }
+
+      .step-card h3 {
+        margin: 0 0 12px;
+        color: var(--primary-dark);
+      }
+
+      .step-card p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      .features {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 22px;
+      }
+
+      .feature-card {
+        background: rgba(255, 255, 255, 0.7);
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        padding: 24px 20px;
+      }
+
+      .feature-icon {
+        width: 58px;
+        height: 58px;
+        border-radius: 18px;
+        display: grid;
+        place-items: center;
+        background: linear-gradient(135deg, rgba(30, 58, 138, 0.1), rgba(16, 185, 129, 0.1));
+        font-size: 1.5rem;
+        margin-bottom: 16px;
+      }
+
+      .feature-card h3 {
+        margin: 0 0 10px;
+        color: var(--primary-dark);
+      }
+
+      .feature-card p {
+        color: var(--muted);
+        line-height: 1.75;
+        margin: 0;
+      }
+
+      .cta {
+        padding: 60px 0 80px;
+      }
+
+      .cta-box {
+        background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+        border-radius: 28px;
+        padding: 40px 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 24px;
+        color: white;
+        box-shadow: var(--shadow);
+      }
+
+      .cta-box h2 {
+        margin: 0 0 10px;
+        font-size: clamp(1.8rem, 2vw, 2.6rem);
+      }
+
+      .cta-box p {
+        margin: 0;
+        opacity: 0.85;
+        line-height: 1.7;
+      }
+
+      footer {
+        border-top: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.75);
+        padding: 24px 0 48px;
+      }
+
+      .footer-wrap {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+        color: var(--muted);
+      }
+
+      @media (max-width: 900px) {
+        .hero-wrap,
+        .steps,
+        .features,
+        .cta-box {
+          grid-template-columns: 1fr;
+          display: grid;
+        }
+
+        .nav-links {
+          display: none;
+        }
+
+        .cta-box {
+          display: block;
+          text-align: center;
+        }
+      }
+
+      @media (max-width: 560px) {
+        .actions {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .stat-list {
+          grid-template-columns: 1fr;
+        }
+
+        .footer-wrap {
+          flex-direction: column;
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container nav">
+        <div class="brand">
+          <div class="brand-mark">K</div>
+          <span>Komunitas Kita</span>
+        </div>
+        <nav class="nav-links" aria-label="Navigasi utama">
+          <a href="#cara-kerja">Cara Kerja</a>
+          <a href="#fitur">Fitur</a>
+          <a href="#manfaat">Manfaat</a>
+          <a href="#kontak">Kontak</a>
+        </nav>
+        <a href="#kontak" class="btn btn-primary">Mulai Sekarang</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" id="cara-kerja">
+        <div class="container hero-wrap">
+          <div>
+            <div class="eyebrow">● Proses yang sederhana</div>
+            <h1>Bagaimana kami membantu Anda lebih mudah berkembang</h1>
+            <p class="lead">
+              Kami menghadirkan sistem yang mudah dipahami dan cepat digunakan. Setiap langkah dirancang agar Anda bisa mulai dengan cepat,
+              mendapatkan hasil nyata, dan tetap fokus pada tujuan utama.
+            </p>
+            <div class="actions">
+              <a href="#kontak" class="btn btn-primary">Coba Sekarang</a>
+              <a href="#fitur" class="secondary-link">Lihat detail</a>
+            </div>
+          </div>
+
+          <div class="hero-card" aria-label="Preview proses kerja">
+            <div class="mini-panel">
+              <div class="mini-top">
+                <strong>Progres Aktivitas</strong>
+                <span class="chip">Aktif</span>
+              </div>
+              <div class="progress">
+                <div class="progress-bar"></div>
+              </div>
+            </div>
+
+            <div class="mini-panel">
+              <strong>Ringkasan hari ini</strong>
+              <div class="stat-list">
+                <div class="stat-item">
+                  <strong>24</strong>
+                  <span>Peserta</span>
+                </div>
+                <div class="stat-item">
+                  <strong>8</strong>
+                  <span>Proses</span>
+                </div>
+                <div class="stat-item">
+                  <strong>96%</strong>
+                  <span>Keberhasilan</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="container">
+          <div class="section-head">
+            <h2>4 langkah mudah untuk mulai</h2>
+            <p>
+              Sistem kami dibuat supaya Anda tidak perlu memahami banyak hal. Mulai dari persiapan hingga hasil, semuanya dibuat ringkas dan jelas.
+            </p>
+          </div>
+
+          <div class="steps">
+            <article class="step-card">
+              <div class="step-num">1</div>
+              <h3>Daftar akun</h3>
+              <p>Anda cukup membuat akun dengan data dasar, lalu masuk ke dashboard dan mulai proses yang sudah disiapkan.</p>
+            </article>
+
+            <article class="step-card">
+              <div class="step-num">2</div>
+              <h3>Pilih kebutuhan</h3>
+              <p>Setiap kebutuhan dibagi dalam fitur yang jelas sehingga Anda dapat menyesuaikan langkah sesuai tujuan.</p>
+            </article>
+
+            <article class="step-card">
+              <div class="step-num">3</div>
+              <h3>Proses otomatis</h3>
+              <p>Sistem akan membantu memproses data, mengorganisir pekerjaan, dan menampilkan progres secara real-time.</p>
+            </article>
+
+            <article class="step-card">
+              <div class="step-num">4</div>
+              <h3>Hasil yang terukur</h3>
+              <p>Anda bisa melihat pencapaian, melacak perkembangan, dan mengambil keputusan lebih cepat berdasarkan data.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="fitur">
+        <div class="container">
+          <div class="section-head">
+            <h2>Kenapa kami bekerja seperti ini</h2>
+            <p>
+              Kami fokus pada efisiensi, kejelasan, dan kemudahan penggunaan agar setiap orang dapat memanfaatkan layanan tanpa hambatan.
+            </p>
+          </div>
+
+          <div class="features">
+            <article class="feature-card">
+              <div class="feature-icon">⚡</div>
+              <h3>Proses cepat</h3>
+              <p>Semua proses dirancang agar tidak berbelit dan dapat dijalankan dengan waktu yang lebih singkat.</p>
+            </article>
+
+            <article class="feature-card">
+              <div class="feature-icon">🧭</div>
+              <h3>Panduan jelas</h3>
+              <p>Setiap tahapan disajikan dengan informasi yang terstruktur agar mudah dipahami dari awal sampai akhir.</p>
+            </article>
+
+            <article class="feature-card">
+              <div class="feature-icon">📊</div>
+              <h3>Monitoring real-time</h3>
+              <p>Anda dapat melihat perkembangan dan status kerja secara langsung tanpa menunggu update manual.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="manfaat">
+        <div class="container">
+          <div class="section-head">
+            <h2>Manfaat utama bagi Anda</h2>
+            <p>
+              Dengan pendekatan yang sederhana, Anda tidak hanya mendapatkan solusi, tetapi juga pengalaman yang lebih teratur dan terarah.
+            </p>
+          </div>
+
+          <div class="features">
+            <article class="feature-card">
+              <div class="feature-icon">✅</div>
+              <h3>Lebih efisien</h3>
+              <p>Semua aktivitas tersusun rapi dan tidak membuang waktu untuk langkah yang tidak perlu.</p>
+            </article>
+
+            <article class="feature-card">
+              <div class="feature-icon">🔒</div>
+              <h3>Lebih aman</h3>
+              <p>Data dan proses dikelola dengan pendekatan yang menjaga keamanan dan keteraturan.</p>
+            </article>
+
+            <article class="feature-card">
+              <div class="feature-icon">📈</div>
+              <h3>Hasil lebih terukur</h3>
+              <p>Anda bisa menilai keberhasilan dengan indikator yang jelas dan mudah dipantau.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="cta" id="kontak">
+        <div class="container">
+          <div class="cta-box">
+            <div>
+              <h2>Siap memulai dengan cara yang lebih mudah?</h2>
+              <p>Jadikan proses kerja Anda lebih cepat, jelas, dan terorganisasi dari hari pertama.</p>
+            </div>
+            <a href="mailto:hello@contoh.com" class="btn btn-primary">Hubungi Kami</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container footer-wrap">
+        <div>© 2025 Komunitas Kita. Semua hak dilindungi.</div>
+        <div>Made with care for better workflow.</div>
+      </div>
+    </footer>
+  </body>
+</html>
